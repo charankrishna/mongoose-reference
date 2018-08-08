@@ -10,6 +10,9 @@ var app = express();
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded());
 
+
+// Add Name Route
+
 app.post('/',function(req,res){
     console.log(req.body);
     var user = new User();
@@ -23,3 +26,17 @@ app.post('/',function(req,res){
     })
 });
 
+// Show Name Route
+
+app.get('/',function(req,res){
+    User.find({},function(err,users){
+        if(err){
+            throw err;
+        }
+        res.json(users);
+    })
+});
+
+App.listen(8080, () => {
+    console.log("Server running on port 8080");
+   });
